@@ -1,15 +1,16 @@
 [
   {
     "bookSourceId": 1,
-    "bookSourceName": "起点中文",
+    "bookSourceName": "书趣阁",
     "bookSourceGroup": "selenium",
     "bookSourceComment": "",
-    "bookSourceUrl": "https://www.qidian.com",
+    "bookSourceUrl": "https://www.ishuquge.org",
     "cloudflare": false,
     "ruleSearch": {
-      "inputBox": "class.author.0@text",
-      "submitButton": "class.bookbox",
-      "resultUrl": "class.cat.0@text##分类："
+      "inputBox": ".search .text",
+      "submitButton": ".search .btn",
+      "resultUrl": ".bookinfo a:nth-child(1)",
+      "resultPageNext": ""
     },
     "ruleBookInfo": {
       "name": "class.info.0@tag.h2.0@text",
@@ -25,15 +26,16 @@
   },
   {
     "bookSourceId": 2,
-    "bookSourceName": "起点中文",
+    "bookSourceName": "大熊猫文学网",
     "bookSourceGroup": "selenium",
     "bookSourceComment": "",
-    "bookSourceUrl": "https://www.qidian.com",
+    "bookSourceUrl": "https://www.dxmwx.org",
     "cloudflare": false,
     "ruleSearch": {
-      "inputBox": "class.author.0@text",
-      "submitButton": "class.bookbox",
-      "resultUrl": "class.cat.0@text##分类："
+      "inputBox": "#Txt_KeywordsPC",
+      "submitButton": ".onlypc input[type=button]",
+      "resultUrl": ".margin0h5 a:nth-child(1)",
+      "resultPageNext": ".wd4 a:nth-last-child(2)"
     },
     "ruleBookInfo": {
       "name": "class.info.0@tag.h2.0@text",

@@ -11,11 +11,11 @@
 
 脚本支持 Selenium 和 API 两种方式进行爬取，依据编写的书源，脚本自动选择对应方式对网站内容进行获取。
 
-在使用 Selenium 爬取时，脚本将使用无头浏览器进行爬取，以模拟真实用户操作。 
+在使用 Selenium 爬取时，脚本将使用无头浏览器进行爬取，以模拟真实用户操作。（正在开发） 
 
-在使用 API 爬取时，脚本将使用 Requests 和 BeautifulSoup 进行爬取。
+在使用 API 爬取时，脚本将使用 Requests 和 BeautifulSoup 进行爬取。（待开发）
 
 ## 难点
 
 - 书源的适配，不同网站的界面样式不一致，如何确保脚本能通过统一的书源格式进行爬取。（这里统一使用 CSS Selector 对网站内容进行识别并爬取）
-- Cloudflare 的人机验证绕过，部分网站使用 Cloudflare 的墙来避免爬虫爬取。（这里通过手动在安全的浏览器中获取 Cookie 值`cf_clearance`后再进行绕过）
+- Cloudflare 的人机验证绕过，部分网站使用 Cloudflare 的墙来避免爬虫爬取。（这里通过手动在安全的浏览器中获取 Cookie 值 `cf_clearance` 后再进行绕过）

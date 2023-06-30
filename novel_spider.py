@@ -47,26 +47,47 @@ class Spider:
         key = input('请输入关键字(exit 退出): ')
         if key == 'exit':
             return 0
-        chap_text = []
-        chap_link = []
         self._browser.get(self._source.source_url)
         input_box = self._browser.find_element(By.CSS_SELECTOR, self._source.source_ruleSearch.input_box)
         input_box.clear()
+        input_box.send_keys(key)
         submit_button = self._browser.find_element(By.CSS_SELECTOR, self._source.source_ruleSearch.submit_button)
         submit_button.click()
-        print('Wait for 6s')
-        time.sleep(6)
-        link = self._browser.find_elements(By.CSS_SELECTOR, self._source.source_ruleSearch.result_url)
-        for each in link:
-            chap_text.append(each.text)
-            chap_link.append(each.get_attribute('href'))
-        print('====================')
-        print("name | url")
-        for each in range(len(chap_text)):
-            print(f'{chap_text[each]} | {chap_link[each]}'.replace(self._source.source_url, ''))
-        print('====================')
-        print('结束搜索')
-        print('====================')
+        while True:
+            print('Wait for 6s')
+            time.sleep(6)
+            chap_text = []
+            chap_link = []
+            link = self._browser.find_elements(By.CSS_SELECTOR, self._source.source_ruleSearch.result_url)
+            for each in link:
+                chap_text.append(each.text)
+                chap_link.append(each.get_attribute('href'))
+            print('====================')
+            print("name | url")
+            for each in range(len(chap_text)):
+                print(f'{chap_text[each]} | {chap_link[each]}'.replace(self._source.source_url, ''))
+            print('====================')
+            if self._source.source_ruleSearch.result_PageNext == '':
+                print('结束搜索')
+                print('====================')
+                break
+            else:
+                print('存在下一页')
+                next_page = input('前往下一页(q 退出): ')
+                if next_page == 'q':
+                    print('结束搜索')
+                    print('====================')
+                    break
+                else:
+                    next_button = self._browser.find_elements(By.CSS_SELECTOR,
+                                                              self._source.source_ruleSearch.result_PageNext)
+                    if len(next_button) != 0:
+                        next_button[0].click()
+                    else:
+                        print('最后一页，结束搜索')
+                        print('====================')
+                        break
+                    continue
 
     def _read(self):
         pass

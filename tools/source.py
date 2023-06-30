@@ -23,6 +23,7 @@ class RuleSearch:
         self.input_box = data['inputBox']
         self.submit_button = data['submitButton']
         self.result_url = data['resultUrl']
+        self.result_PageNext = data['resultPageNext']
 
 
 class RuleBookInfo:
