@@ -14,7 +14,7 @@ class Source:
         self.source_ruleSearch = RuleSearch(json_data['ruleSearch'])
         self.source_ruleBookInfo = RuleBookInfo(json_data['ruleBookInfo'])
         self.source_ruleToc = RuleToc(json_data['ruleToc'])
-        self.source_ruleContent = json_data['ruleContent']
+        self.source_ruleContent = RuleContent(json_data['ruleContent'])
 
 
 class RuleSearch:
@@ -31,12 +31,18 @@ class RuleBookInfo:
     def __init__(self, data: dict):
         self.name = data['name']
         self.author = data['author']
-        self.lastChapter = data['lastChapter']
 
 
 class RuleToc:
 
     def __init__(self, data: dict):
-        self.chapter_list = data['chapterList']
+        self.true_toc = data['trueToc']
         self.chapter_name = data['chapterName']
         self.chapter_url = data['chapterUrl']
+
+
+class RuleContent:
+
+    def __init__(self, data: dict):
+        self.content = data['content']
+        self.page_next = data['pageNext']

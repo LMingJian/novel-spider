@@ -13,16 +13,17 @@
       "resultPageNext": ""
     },
     "ruleBookInfo": {
-      "name": "class.info.0@tag.h2.0@text",
-      "author": "class.small.0@tag.span.0@text##作者：",
-      "lastChapter": "class.small.0@tag.span.5@tag.a.0@text"
+      "name": "",
+      "author": ""
     },
     "ruleToc": {
-      "chapterList": "//dt[2]/following-sibling::dd",
-      "chapterName": "tag.a.0@text",
-      "chapterUrl": "tag.a.0@href"
+      "trueToc": "",
+      "chapterUrl": ""
     },
-    "ruleContent": "id.content.0@textNodes##(https:\\/\\/.+)|(请记住本书.+)"
+    "ruleContent": {
+      "content": "",
+      "pageNext": ""
+    }
   },
   {
     "bookSourceId": 2,
@@ -38,15 +39,16 @@
       "resultPageNext": ".wd4 a:nth-last-child(2)"
     },
     "ruleBookInfo": {
-      "name": "class.info.0@tag.h2.0@text",
-      "author": "class.small.0@tag.span.0@text##作者：",
-      "lastChapter": "class.small.0@tag.span.5@tag.a.0@text"
+      "name": "",
+      "author": ""
     },
     "ruleToc": {
-      "chapterList": "//dt[2]/following-sibling::dd",
-      "chapterName": "tag.a.0@text",
-      "chapterUrl": "tag.a.0@href"
+      "trueToc": "",
+      "chapterUrl": ""
     },
-    "ruleContent": "id.content.0@textNodes##(https:\\/\\/.+)|(请记住本书.+)"
+    "ruleContent": {
+      "content": "",
+      "pageNext": ""
+    }
   }
 ]
