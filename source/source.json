@@ -22,6 +22,7 @@
     },
     "ruleContent": {
       "content": "#content",
+      "contentName": ".content h1",
       "pageNext": ".page_chapter li:nth-of-type(3) a"
     }
   },
@@ -48,6 +49,7 @@
     },
     "ruleContent": {
       "content": "div#Lab_Contents",
+      "contentName": "#ChapterTitle",
       "pageNext": "div.erzibottom:nth-of-type(3)"
     }
   }

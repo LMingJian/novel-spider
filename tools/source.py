@@ -44,4 +44,5 @@ class RuleContent:
 
     def __init__(self, data: dict):
         self.content = data['content']
+        self.content_name = data['contentName']
         self.page_next = data['pageNext']

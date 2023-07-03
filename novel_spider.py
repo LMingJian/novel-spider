@@ -1,4 +1,6 @@
+import os
 import re
+import threading
 import time
 
 from selenium.webdriver.common.by import By
@@ -10,8 +12,10 @@ class Spider:
 
     def __init__(self, driver_path: str, driver_option: list, source_id: int):
         webdriver = WebDriver(driver_path, driver_option)
-        self._source = Source(r'./source/source.json', source_id)
         self._browser = webdriver.start_browser()
+        self._driver_path = driver_path
+        self._driver_option = driver_option
+        self._source = Source(r'./source/source.json', source_id)
         self._menu()
 
     def _menu(self):
@@ -141,6 +145,7 @@ class Spider:
         self._browser.get(chapter_link)
         print('Wait for 3s')
         time.sleep(3)
+        chapter_name = self._browser.find_element(By.CSS_SELECTOR, self._source.source_ruleContent.content_name).text
         p_list = self._browser.find_element(By.CSS_SELECTOR, self._source.source_ruleContent.content).text.splitlines()
         content = []
         for each in p_list:
@@ -152,6 +157,7 @@ class Spider:
         chapter_content = content
         while True:
             print("------------------------")
+            print(chapter_name)
             count = 0
             for each in chapter_content:
                 print(each)
@@ -182,4 +188,84 @@ class Spider:
                 time.sleep(3)
 
     def _download(self):
-        pass
+        print("====================")
+        print("3.下载")
+        print("====================")
+        result_file = './result'
+        if not os.path.exists(result_file):
+            os.mkdir(result_file)
+        url = input('请输入链接(exit 退出): ')
+        if url == 'exit':
+            return 0
+        self._browser.get(self._source.source_url + url)
+        print('Wait for 6s')
+        time.sleep(6)
+        if self._source.source_ruleToc.true_toc != '':
+            print('跳转真实目录')
+            toc_button = self._browser.find_element(By.CSS_SELECTOR, self._source.source_ruleToc.true_toc)
+            toc_button.click()
+            print('Wait for 6s')
+            time.sleep(6)
+        # 章节目录
+        chapter_list = self._browser.find_elements(By.CSS_SELECTOR, self._source.source_ruleToc.chapter_url)
+        if len(chapter_list) == 0:
+            print('章节列表为空，请检查源')
+            return 0
+        print('获取章节成功')
+        print(f'章节: {len(chapter_list)}')
+        start = int(input('开始页(0 开始)：'))
+        end = int(input('结束页(章节数 结束)：'))
+        thread_number = int(input('线程数：'))
+        download_list = range(start, end)
+        quotient, remainder = divmod(len(download_list), thread_number)
+        threads = []
+        target_start = 0
+        if remainder != 0:
+            target_end = quotient + remainder - 1
+        else:
+            target_end = quotient - 1
+        for each in range(thread_number):
+            print(f'线程分配：{target_start} to {target_end}')
+            t = threading.Thread(target=self._novel_get, args=(target_start, target_end, result_file, url))
+            threads.append(t)
+            target_start = target_end + 1
+            target_end = target_start + quotient - 1
+        for t in threads:
+            t.daemon = True
+            t.start()
+        for t in threads:
+            t.join()
+
+    def _novel_get(self, start, end, result_file, url):
+        new_webdriver = WebDriver(self._driver_path, self._driver_option)
+        new_browser = new_webdriver.start_browser()
+        new_browser.get(self._source.source_url + url)
+        time.sleep(6)
+        if self._source.source_ruleToc.true_toc != '':
+            toc_button = new_browser.find_element(By.CSS_SELECTOR, self._source.source_ruleToc.true_toc)
+            toc_button.click()
+            time.sleep(6)
+        chapter_list = new_browser.find_elements(By.CSS_SELECTOR, self._source.source_ruleToc.chapter_url)
+        if len(chapter_list) == 0:
+            raise 'Chapter is null'
+        new_browser.execute_script("arguments[0].click();", chapter_list[start])
+        while True:
+            if start > end:
+                break
+            chapter_name = new_browser.find_element(By.CSS_SELECTOR, self._source.source_ruleContent.content_name).text
+            for each in ['\\', '/', ':', '*', '?', "\"", '<', '>', '|']:
+                if each in chapter_name:
+                    chapter_name = chapter_name.replace(each, '')
+            with open(f'{result_file}/{start} @= {chapter_name}.txt', 'wb') as f:
+                content = new_browser.find_element(By.CSS_SELECTOR, self._source.source_ruleContent.content).text
+                content = content.splitlines()
+                for string in content:
+                    if string == '':
+                        continue
+                    f.write(string.strip().encode('UTF-8'))
+                    f.write('\n'.encode('UTF-8'))
+            next_button = new_browser.find_element(By.CSS_SELECTOR, self._source.source_ruleContent.page_next)
+            new_browser.execute_script("arguments[0].click();", next_button)
+            start += 1
+            time.sleep(3)
+        print('线程关闭')
