@@ -19,6 +19,9 @@ class Spider:
         print("欢迎进入系统")
         print(self._source.source_name)
         print(self._source.source_comment)
+        if '异常' in self._source.source_comment:
+            print("====================")
+            return 0
         print("====================")
         print('1.搜索')
         print('2.阅读')
@@ -105,6 +108,12 @@ class Spider:
         print(novel_name)
         print(novel_author)
         print("====================")
+        if self._source.source_ruleToc.true_toc != '':
+            print('跳转真实目录')
+            toc_button = self._browser.find_element(By.CSS_SELECTOR, self._source.source_ruleToc.true_toc)
+            toc_button.click()
+            print('Wait for 6s')
+            time.sleep(6)
         # 章节目录
         chapter_list = self._browser.find_elements(By.CSS_SELECTOR, self._source.source_ruleToc.chapter_url)
         if len(chapter_list) == 0:
@@ -112,7 +121,7 @@ class Spider:
             return 0
         print('获取章节成功')
         print(f'章节: {len(chapter_list)}')
-        chapter = input('请选择序号(q退出): ')
+        chapter = input('请选择序号(q 退出，0 开始): ')
         if chapter == 'q':
             return 0
         try:

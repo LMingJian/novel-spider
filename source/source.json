@@ -13,16 +13,16 @@
       "resultPageNext": ""
     },
     "ruleBookInfo": {
-      "name": "",
-      "author": ""
+      "name": ".info h2",
+      "author": ".small span:nth-child(1)"
     },
     "ruleToc": {
       "trueToc": "",
-      "chapterUrl": ""
+      "chapterUrl": "dt:nth-of-type(2) ~ dd a"
     },
     "ruleContent": {
-      "content": "",
-      "pageNext": ""
+      "content": "#content",
+      "pageNext": ".page_chapter li:nth-of-type(3) a"
     }
   },
   {
@@ -39,16 +39,16 @@
       "resultPageNext": ".wd4 a:nth-last-child(2)"
     },
     "ruleBookInfo": {
-      "name": "",
-      "author": ""
+      "name": ".imgmargin + div div:nth-of-type(1) span",
+      "author": ".imgmargin + div div:nth-of-type(2) a"
     },
     "ruleToc": {
-      "trueToc": "",
-      "chapterUrl": ""
+      "trueToc": "span.onlypc a",
+      "chapterUrl": "a[href^='/read/']:not([title])"
     },
     "ruleContent": {
-      "content": "",
-      "pageNext": ""
+      "content": "div#Lab_Contents",
+      "pageNext": "div.erzibottom:nth-of-type(3)"
     }
   }
 ]

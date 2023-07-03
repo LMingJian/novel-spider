@@ -37,7 +37,6 @@ class RuleToc:
 
     def __init__(self, data: dict):
         self.true_toc = data['trueToc']
-        self.chapter_name = data['chapterName']
         self.chapter_url = data['chapterUrl']
 
 
