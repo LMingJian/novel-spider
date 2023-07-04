@@ -22,10 +22,11 @@ class Spider:
         print("====================")
         print("欢迎进入系统")
         print(self._source.source_name)
-        print(self._source.source_comment)
-        if '异常' in self._source.source_comment:
-            print("====================")
-            return 0
+        if self._source.source_comment:
+            print(self._source.source_comment)
+            if '异常' in self._source.source_comment:
+                print("====================")
+                return 0
         print("====================")
         print('1.搜索')
         print('2.阅读')
@@ -143,19 +144,21 @@ class Spider:
             chapter_link = self._source.source_url + chapter_link
         # 跳转阅读
         self._browser.get(chapter_link)
-        print('Wait for 3s')
-        time.sleep(3)
-        chapter_name = self._browser.find_element(By.CSS_SELECTOR, self._source.source_ruleContent.content_name).text
-        p_list = self._browser.find_element(By.CSS_SELECTOR, self._source.source_ruleContent.content).text.splitlines()
-        content = []
-        for each in p_list:
-            data = each.strip()
-            if each == '':
-                continue
-            else:
-                content.append(data)
-        chapter_content = content
         while True:
+            print('Wait for 3s')
+            time.sleep(3)
+            chapter_name = self._browser.find_element(By.CSS_SELECTOR,
+                                                      self._source.source_ruleContent.content_name).text
+            p_list = self._browser.find_element(By.CSS_SELECTOR,
+                                                self._source.source_ruleContent.content).text.splitlines()
+            content = []
+            for each in p_list:
+                data = each.strip()
+                if each == '':
+                    continue
+                else:
+                    content.append(data)
+            chapter_content = content
             print("------------------------")
             print(chapter_name)
             count = 0
@@ -184,8 +187,6 @@ class Spider:
             else:
                 next_button = self._browser.find_element(By.CSS_SELECTOR, self._source.source_ruleContent.page_next)
                 self._browser.execute_script("arguments[0].click();", next_button)
-                print('Wait for 3s')
-                time.sleep(3)
 
     def _download(self):
         print("====================")
@@ -219,11 +220,11 @@ class Spider:
         download_list = range(start, end)
         quotient, remainder = divmod(len(download_list), thread_number)
         threads = []
-        target_start = 0
+        target_start = start
         if remainder != 0:
-            target_end = quotient + remainder - 1
+            target_end = target_start + quotient + remainder - 1
         else:
-            target_end = quotient - 1
+            target_end = target_start + quotient - 1
         for each in range(thread_number):
             print(f'线程分配：{target_start} to {target_end}')
             t = threading.Thread(target=self._novel_get, args=(target_start, target_end, result_file, url))
@@ -247,7 +248,7 @@ class Spider:
             time.sleep(6)
         chapter_list = new_browser.find_elements(By.CSS_SELECTOR, self._source.source_ruleToc.chapter_url)
         if len(chapter_list) == 0:
-            raise 'Chapter is null'
+            raise ValueError('Chapter is null')
         new_browser.execute_script("arguments[0].click();", chapter_list[start])
         while True:
             if start > end:
@@ -256,9 +257,10 @@ class Spider:
             for each in ['\\', '/', ':', '*', '?', "\"", '<', '>', '|']:
                 if each in chapter_name:
                     chapter_name = chapter_name.replace(each, '')
-            with open(f'{result_file}/{start} @= {chapter_name}.txt', 'wb') as f:
+            with open(f'{result_file}/{start+1} @= {chapter_name}.txt', 'wb') as f:
                 content = new_browser.find_element(By.CSS_SELECTOR, self._source.source_ruleContent.content).text
                 content = content.splitlines()
+                content.insert(0, chapter_name)
                 for string in content:
                     if string == '':
                         continue

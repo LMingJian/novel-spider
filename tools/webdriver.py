@@ -19,7 +19,8 @@ class WebDriver:
         else:
             raise ValueError("The driver is not supported. Please replace the driver")
         if driver_options:
-            self._options.add_argument(driver_options)
+            for each in driver_options:
+                self._options.add_argument(each)
         self._driver_path = driver_path
 
     def start_browser(self):
