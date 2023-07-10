@@ -260,7 +260,7 @@ class Spider:
             with open(f'{result_file}/{start+1} @= {chapter_name}.txt', 'wb') as f:
                 content = new_browser.find_element(By.CSS_SELECTOR, self._source.source_ruleContent.content).text
                 content = content.splitlines()
-                content.insert(0, chapter_name)
+                # content.insert(0, chapter_name)
                 for string in content:
                     if string == '':
                         continue
