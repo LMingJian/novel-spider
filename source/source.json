@@ -52,5 +52,32 @@
       "contentName": "#ChapterTitle",
       "pageNext": "div.erzibottom:nth-of-type(3)"
     }
+  },
+  {
+    "bookSourceId": 3,
+    "bookSourceName": "小说娃",
+    "bookSourceGroup": "selenium",
+    "bookSourceComment": "存在人机校验,搜索间隔 30 s",
+    "bookSourceUrl": "https://xiaoshuow.cc",
+    "cloudflare": true,
+    "ruleSearch": {
+      "inputBox": ".input-group input",
+      "submitButton": ".input-group button",
+      "resultUrl": "tr td:nth-child(1) a",
+      "resultPageNext": ""
+    },
+    "ruleBookInfo": {
+      "name": ".m-infos h1",
+      "author": ".m-infos a"
+    },
+    "ruleToc": {
+      "trueToc": "",
+      "chapterUrl": "#play_0 li a"
+    },
+    "ruleContent": {
+      "content": "#con",
+      "contentName": ".m-title h1",
+      "pageNext": ".m-page a:nth-of-type(3)"
+    }
   }
 ]

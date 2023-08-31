@@ -16,6 +16,7 @@ class Spider:
         self._driver_path = driver_path
         self._driver_option = driver_option
         self._source = Source(r'./source/source.json', source_id)
+        self.cf_clearance = ''
         self._menu()
 
     def _menu(self):
@@ -27,6 +28,9 @@ class Spider:
             if '异常' in self._source.source_comment:
                 print("====================")
                 return 0
+        if self._source.source_cloudflare:
+            print(f'请前往 {self._source.source_url} 手动获取 cf_clearance ')
+            self.cf_clearance = input('cf_clearance: ')
         print("====================")
         print('1.搜索')
         print('2.阅读')
@@ -57,6 +61,9 @@ class Spider:
         if key == 'exit':
             return 0
         self._browser.get(self._source.source_url)
+        if self._source.source_cloudflare:
+            self._browser.add_cookie({'name': 'cf_clearance', 'value': self.cf_clearance})
+            self._browser.refresh()
         input_box = self._browser.find_element(By.CSS_SELECTOR, self._source.source_ruleSearch.input_box)
         input_box.clear()
         input_box.send_keys(key)
@@ -106,6 +113,9 @@ class Spider:
         if url == 'exit':
             return 0
         self._browser.get(self._source.source_url + url)
+        if self._source.source_cloudflare:
+            self._browser.add_cookie({'name': 'cf_clearance', 'value': self.cf_clearance})
+            self._browser.refresh()
         print('Wait for 6s')
         time.sleep(6)
         novel_name = self._browser.find_element(By.CSS_SELECTOR, self._source.source_ruleBookInfo.name).text
@@ -199,6 +209,9 @@ class Spider:
         if url == 'exit':
             return 0
         self._browser.get(self._source.source_url + url)
+        if self._source.source_cloudflare:
+            self._browser.add_cookie({'name': 'cf_clearance', 'value': self.cf_clearance})
+            self._browser.refresh()
         print('Wait for 6s')
         time.sleep(6)
         if self._source.source_ruleToc.true_toc != '':
@@ -241,6 +254,9 @@ class Spider:
         new_webdriver = WebDriver(self._driver_path, self._driver_option)
         new_browser = new_webdriver.start_browser()
         new_browser.get(self._source.source_url + url)
+        if self._source.source_cloudflare:
+            new_browser.add_cookie({'name': 'cf_clearance', 'value': self.cf_clearance})
+            new_browser.refresh()
         time.sleep(6)
         if self._source.source_ruleToc.true_toc != '':
             toc_button = new_browser.find_element(By.CSS_SELECTOR, self._source.source_ruleToc.true_toc)
