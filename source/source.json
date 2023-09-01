@@ -79,5 +79,32 @@
       "contentName": ".m-title h1",
       "pageNext": ".m-page a:nth-of-type(3)"
     }
+  },
+  {
+    "bookSourceId": 4,
+    "bookSourceName": "搜书网",
+    "bookSourceGroup": "selenium",
+    "bookSourceComment": "移动：https://m.soushuwang.cc",
+    "bookSourceUrl": "https://www.soushuwang.cc",
+    "cloudflare": false,
+    "ruleSearch": {
+      "inputBox": ".search .text",
+      "submitButton": ".search .btn",
+      "resultUrl": ".type_show .bookname a",
+      "resultPageNext": ""
+    },
+    "ruleBookInfo": {
+      "name": ".info h1",
+      "author": ".info .small span:nth-child(1)"
+    },
+    "ruleToc": {
+      "trueToc": "",
+      "chapterUrl": ".listmain dd a"
+    },
+    "ruleContent": {
+      "content": "#chaptercontent",
+      "contentName": ".content h1",
+      "pageNext": ".pagedown #pb_next"
+    }
   }
 ]
