@@ -17,6 +17,7 @@ class Spider:
         self._driver_option = driver_option
         self._source = Source(r'./source/source.json', source_id)
         self.cf_clearance = ''
+        self.cookie = ''
         self._menu()
 
     def _menu(self):
@@ -31,6 +32,9 @@ class Spider:
         if self._source.source_cloudflare:
             print(f'请前往 {self._source.source_url} 手动获取 cf_clearance ')
             self.cf_clearance = input('cf_clearance: ')
+        elif self._source.source_cookie:
+            print(f'请前往 {self._source.source_url} 手动获取 cookie ')
+            self.cookie = input('cookie: ')
         print("====================")
         print('1.搜索')
         print('2.阅读')
@@ -116,6 +120,14 @@ class Spider:
         if self._source.source_cloudflare:
             self._browser.add_cookie({'name': 'cf_clearance', 'value': self.cf_clearance})
             self._browser.refresh()
+        elif self._source.source_cookie:
+            cookie_list = []
+            for each in self.cookie.split(';'):
+                k, v = each.split('=')
+                cookie_list.append({'name': k, 'value': v})
+            for each in cookie_list:
+                self._browser.add_cookie(each)
+            self._browser.refresh()
         print('Wait for 6s')
         time.sleep(6)
         novel_name = self._browser.find_element(By.CSS_SELECTOR, self._source.source_ruleBookInfo.name).text
@@ -195,8 +207,13 @@ class Spider:
                 print("========================")
                 break
             else:
-                next_button = self._browser.find_element(By.CSS_SELECTOR, self._source.source_ruleContent.page_next)
-                self._browser.execute_script("arguments[0].click();", next_button)
+                try:
+                    next_button = self._browser.find_element(By.CSS_SELECTOR, self._source.source_ruleContent.page_next)
+                    self._browser.execute_script("arguments[0].click();", next_button)
+                except BaseException:  # noqa
+                    next_button = self._browser.find_element(By.CSS_SELECTOR,
+                                                             self._source.source_ruleContent.chapter_next)
+                    self._browser.execute_script("arguments[0].click();", next_button)
 
     def _download(self):
         print("====================")

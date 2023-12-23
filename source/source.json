@@ -4,8 +4,9 @@
     "bookSourceName": "书趣阁",
     "bookSourceGroup": "selenium",
     "bookSourceComment": "",
-    "bookSourceUrl": "https://www.ishuquge.org",
+    "bookSourceUrl": "https://www.ishuquge.la",
     "cloudflare": false,
+    "cookie": false,
     "ruleSearch": {
       "inputBox": ".search .text",
       "submitButton": ".search .btn",
@@ -23,7 +24,8 @@
     "ruleContent": {
       "content": "#content",
       "contentName": ".content h1",
-      "pageNext": ".page_chapter li:nth-of-type(3) a"
+      "pageNext": ".page_chapter li:nth-of-type(3) a",
+      "chapterNext": ""
     }
   },
   {
@@ -33,6 +35,7 @@
     "bookSourceComment": "",
     "bookSourceUrl": "https://www.dxmwx.org",
     "cloudflare": false,
+    "cookie": false,
     "ruleSearch": {
       "inputBox": "#Txt_KeywordsPC",
       "submitButton": ".onlypc input[type=button]",
@@ -50,7 +53,8 @@
     "ruleContent": {
       "content": "div#Lab_Contents",
       "contentName": "#ChapterTitle",
-      "pageNext": "div.erzibottom:nth-of-type(3)"
+      "pageNext": "div.erzibottom:nth-of-type(3)",
+      "chapterNext": ""
     }
   },
   {
@@ -60,6 +64,7 @@
     "bookSourceComment": "存在人机校验,搜索间隔 30 s",
     "bookSourceUrl": "https://xiaoshuow.cc",
     "cloudflare": true,
+    "cookie": false,
     "ruleSearch": {
       "inputBox": ".input-group input",
       "submitButton": ".input-group button",
@@ -77,7 +82,8 @@
     "ruleContent": {
       "content": "#con",
       "contentName": ".m-title h1",
-      "pageNext": ".m-page a:nth-of-type(3)"
+      "pageNext": ".m-page a:nth-of-type(3)",
+      "chapterNext": ""
     }
   },
   {
@@ -87,6 +93,7 @@
     "bookSourceComment": "移动：https://m.soushuwang.cc",
     "bookSourceUrl": "https://www.soushuwang.cc",
     "cloudflare": false,
+    "cookie": false,
     "ruleSearch": {
       "inputBox": ".search .text",
       "submitButton": ".search .btn",
@@ -104,7 +111,37 @@
     "ruleContent": {
       "content": "#chaptercontent",
       "contentName": ".content h1",
-      "pageNext": ".pagedown #pb_next"
+      "pageNext": ".pagedown #pb_next",
+      "chapterNext": ""
+    }
+  },
+  {
+    "bookSourceId": 5,
+    "bookSourceName": "书香楼阁",
+    "bookSourceGroup": "selenium",
+    "bookSourceComment": "移动：https://m.0773lg.org, 搜索需要手动验证，无法使用",
+    "bookSourceUrl": "https://www.0773lg.org",
+    "cloudflare": false,
+    "cookie": true,
+    "ruleSearch": {
+      "inputBox": "",
+      "submitButton": "",
+      "resultUrl": "",
+      "resultPageNext": ""
+    },
+    "ruleBookInfo": {
+      "name": "#info h1",
+      "author": "#info > p:nth-child(2)"
+    },
+    "ruleToc": {
+      "trueToc": "",
+      "chapterUrl": ".box_con dl a"
+    },
+    "ruleContent": {
+      "content": "#content",
+      "contentName": ".bookname h1",
+      "pageNext": "#PageSet > a:nth-last-child(1)",
+      "chapterNext": ".bottem2 a:nth-child(4)"
     }
   }
 ]

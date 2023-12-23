@@ -15,6 +15,7 @@ class Source:
         self.source_ruleBookInfo = RuleBookInfo(json_data['ruleBookInfo'])
         self.source_ruleToc = RuleToc(json_data['ruleToc'])
         self.source_ruleContent = RuleContent(json_data['ruleContent'])
+        self.source_cookie = json_data['cookie']
 
 
 class RuleSearch:
@@ -46,3 +47,4 @@ class RuleContent:
         self.content = data['content']
         self.content_name = data['contentName']
         self.page_next = data['pageNext']
+        self.chapter_next = data['chapterNext']
