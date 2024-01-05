@@ -143,5 +143,34 @@
       "pageNext": "#PageSet > a:nth-last-child(1)",
       "chapterNext": ".bottem2 a:nth-child(4)"
     }
+  },
+    {
+    "bookSourceId": 6,
+    "bookSourceName": "搜书吧",
+    "bookSourceGroup": "selenium",
+    "bookSourceComment": "移动：https://m.soshu88.cc, 搜索跳页，无法使用",
+    "bookSourceUrl": "https://www.soshu88.cc",
+    "cloudflare": false,
+    "cookie": false,
+    "ruleSearch": {
+      "inputBox": "",
+      "submitButton": "",
+      "resultUrl": "",
+      "resultPageNext": ""
+    },
+    "ruleBookInfo": {
+      "name": ".jieshao h1",
+      "author": ".msg > em:nth-child(1) > a:nth-child(1)"
+    },
+    "ruleToc": {
+      "trueToc": "",
+      "chapterUrl": "div.mulu:nth-child(7) > ul a"
+    },
+    "ruleContent": {
+      "content": "#content",
+      "contentName": ".novel h1",
+      "pageNext": "div.pereview:nth-child(5) > a:nth-child(3)",
+      "chapterNext": ""
+    }
   }
 ]
