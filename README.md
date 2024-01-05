@@ -6,7 +6,6 @@
 
 为什么要编写这个？主要是希望能在 PyCharm 中阅读小说，在日常工作之余，放松心情（~~摸鱼~~）。
 
-
 ## 设计思路
 
 脚本支持 Selenium 和 API 两种方式进行爬取，依据编写的书源，脚本自动选择对应方式对网站内容进行获取。
@@ -43,6 +42,7 @@
     "bookSourceComment": "",  // 注释，当注释中存在“异常”这两个字时，程序会中止，需要变更书源
     "bookSourceUrl": "https://www.ishuquge.org",  // 网络地址
     "cloudflare": false,  // 是否存在 cloudflare 防护
+    "cookie": false,  // 是否需要添加 cookie 绕过验证
     "ruleSearch": {  // 搜索栏规则
       "inputBox": ".search .text",  // 搜索输入框规则
       "submitButton": ".search .btn",  // 搜索提交按钮规则
@@ -60,7 +60,8 @@
     "ruleContent": {  // 正文
       "content": "#content",  // 正文，直接取整个正文框即可，不用取到<p>标签
       "contentName": ".content h1",  // 正文标题
-      "pageNext": ".page_chapter li:nth-of-type(3) a"  // 下一页按钮
+      "pageNext": ".page_chapter li:nth-of-type(3) a",  // 下一页按钮
+      "chapterNext": ""  // 下一章按钮，置空时不生效
     }
   }
 ]
