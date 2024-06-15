@@ -4,7 +4,7 @@
     "bookSourceName": "书趣阁",
     "bookSourceGroup": "selenium",
     "bookSourceComment": "",
-    "bookSourceUrl": "https://www.ishuquge.la",
+    "bookSourceUrl": "https://www.xshuquge.net",
     "cloudflare": false,
     "cookie": false,
     "ruleSearch": {
@@ -54,35 +54,6 @@
       "content": "div#Lab_Contents",
       "contentName": "#ChapterTitle",
       "pageNext": "div.erzibottom:nth-of-type(3)",
-      "chapterNext": ""
-    }
-  },
-  {
-    "bookSourceId": 3,
-    "bookSourceName": "小说娃",
-    "bookSourceGroup": "selenium",
-    "bookSourceComment": "存在人机校验,搜索间隔 30 s",
-    "bookSourceUrl": "https://xiaoshuow.cc",
-    "cloudflare": true,
-    "cookie": false,
-    "ruleSearch": {
-      "inputBox": ".input-group input",
-      "submitButton": ".input-group button",
-      "resultUrl": "tr td:nth-child(1) a",
-      "resultPageNext": ""
-    },
-    "ruleBookInfo": {
-      "name": ".m-infos h1",
-      "author": ".m-infos a"
-    },
-    "ruleToc": {
-      "trueToc": "",
-      "chapterUrl": "#play_0 li a"
-    },
-    "ruleContent": {
-      "content": "#con",
-      "contentName": ".m-title h1",
-      "pageNext": ".m-page a:nth-of-type(3)",
       "chapterNext": ""
     }
   },
