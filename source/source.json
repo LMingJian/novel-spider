@@ -1,71 +1,40 @@
 [
   {
     "bookSourceId": 1,
-    "bookSourceName": "书趣阁",
+    "bookSourceName": "速读谷",
     "bookSourceGroup": "selenium",
-    "bookSourceComment": "",
-    "bookSourceUrl": "https://www.xshuquge.net",
+    "bookSourceComment": "——————",
+    "bookSourceUrl": "https://www.sudugu.org",
     "cloudflare": false,
     "cookie": false,
     "ruleSearch": {
-      "inputBox": ".search .text",
-      "submitButton": ".search .btn",
-      "resultUrl": ".bookinfo a:nth-child(1)",
-      "resultPageNext": ""
+      "enable": false
     },
     "ruleBookInfo": {
-      "name": ".info h2",
-      "author": ".small span:nth-child(1)"
+      "name": ".itemtxt h1 a",
+      "author": ".itemtxt p:nth-child(3) a"
     },
     "ruleToc": {
-      "trueToc": "",
-      "chapterUrl": "dt:nth-of-type(2) ~ dd a"
+      "chapterUrl": "#list li a"
     },
     "ruleContent": {
-      "content": "#content",
-      "contentName": ".content h1",
-      "pageNext": ".page_chapter li:nth-of-type(3) a",
+      "content": ".con",
+      "contentName": ".submenu h1",
+      "pageNext": ".prenext span a",
       "chapterNext": ""
     }
   },
   {
     "bookSourceId": 2,
-    "bookSourceName": "大熊猫文学网",
-    "bookSourceGroup": "selenium",
-    "bookSourceComment": "",
-    "bookSourceUrl": "https://www.dxmwx.org",
-    "cloudflare": false,
-    "cookie": false,
-    "ruleSearch": {
-      "inputBox": "#Txt_KeywordsPC",
-      "submitButton": ".onlypc input[type=button]",
-      "resultUrl": ".margin0h5 a:nth-child(1)",
-      "resultPageNext": ".wd4 a:nth-last-child(2)"
-    },
-    "ruleBookInfo": {
-      "name": ".imgmargin + div div:nth-of-type(1) span",
-      "author": ".imgmargin + div div:nth-of-type(2) a"
-    },
-    "ruleToc": {
-      "trueToc": "span.onlypc a",
-      "chapterUrl": "a[href^='/read/']:not([title])"
-    },
-    "ruleContent": {
-      "content": "div#Lab_Contents",
-      "contentName": "#ChapterTitle",
-      "pageNext": "div.erzibottom:nth-of-type(3)",
-      "chapterNext": ""
-    }
-  },
-  {
-    "bookSourceId": 4,
     "bookSourceName": "搜书网",
     "bookSourceGroup": "selenium",
-    "bookSourceComment": "移动：https://m.soushuwang.cc",
+    "bookSourceComment": "——————",
     "bookSourceUrl": "https://www.soushuwang.cc",
     "cloudflare": false,
     "cookie": false,
     "ruleSearch": {
+      "enable": true,
+      "newPage": false,
       "inputBox": ".search .text",
       "submitButton": ".search .btn",
       "resultUrl": ".type_show .bookname a",
@@ -76,71 +45,12 @@
       "author": ".info .small span:nth-child(1)"
     },
     "ruleToc": {
-      "trueToc": "",
       "chapterUrl": ".listmain dd a"
     },
     "ruleContent": {
       "content": "#chaptercontent",
       "contentName": ".content h1",
       "pageNext": ".pagedown #pb_next",
-      "chapterNext": ""
-    }
-  },
-  {
-    "bookSourceId": 5,
-    "bookSourceName": "书香楼阁",
-    "bookSourceGroup": "selenium",
-    "bookSourceComment": "移动：https://m.0773lg.org, 搜索需要手动验证，无法使用",
-    "bookSourceUrl": "https://www.0773lg.org",
-    "cloudflare": false,
-    "cookie": true,
-    "ruleSearch": {
-      "inputBox": "",
-      "submitButton": "",
-      "resultUrl": "",
-      "resultPageNext": ""
-    },
-    "ruleBookInfo": {
-      "name": "#info h1",
-      "author": "#info > p:nth-child(2)"
-    },
-    "ruleToc": {
-      "trueToc": "",
-      "chapterUrl": ".box_con dl a"
-    },
-    "ruleContent": {
-      "content": "#content",
-      "contentName": ".bookname h1",
-      "pageNext": "#PageSet > a:nth-last-child(1)",
-      "chapterNext": ".bottem2 a:nth-child(4)"
-    }
-  },
-    {
-    "bookSourceId": 6,
-    "bookSourceName": "搜书吧",
-    "bookSourceGroup": "selenium",
-    "bookSourceComment": "移动：https://m.soshu88.cc, 搜索跳页，无法使用",
-    "bookSourceUrl": "https://www.soshu88.cc",
-    "cloudflare": false,
-    "cookie": false,
-    "ruleSearch": {
-      "inputBox": "",
-      "submitButton": "",
-      "resultUrl": "",
-      "resultPageNext": ""
-    },
-    "ruleBookInfo": {
-      "name": ".jieshao h1",
-      "author": ".msg > em:nth-child(1) > a:nth-child(1)"
-    },
-    "ruleToc": {
-      "trueToc": "",
-      "chapterUrl": "div.mulu:nth-child(7) > ul a"
-    },
-    "ruleContent": {
-      "content": "#content",
-      "contentName": ".novel h1",
-      "pageNext": "div.pereview:nth-child(5) > a:nth-child(3)",
       "chapterNext": ""
     }
   }
