@@ -1,5 +1,7 @@
 # novel-spider
 
+@LMingJian 2025
+
 ## 这是什么？
 
 这个一个用来爬取网络小说的 Python 脚本。
